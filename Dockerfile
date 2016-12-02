@@ -47,7 +47,7 @@ RUN mkdir -p /var/log/nginx \
 
 
 # add default nginx conf files
-ADD nginx.conf /usr/local/nginx/config/nginx.conf
+ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 
 EXPOSE 80 443
 
