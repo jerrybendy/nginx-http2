@@ -10,18 +10,18 @@ RUN apt-get update \
             build-essential libpcre3 libpcre3-dev zlib1g-dev unzip git
 
 # add verndor files
-COPY vendors/nginx-ct-1.3.1.zip /usr/local/src/nginx-ct.zip
+COPY vendors/nginx-ct-1.3.2.zip /usr/local/src/nginx-ct.zip
 COPY vendors/openssl-OpenSSL_1_0_2j.tar.gz /usr/local/src/openssl.tar.gz
-COPY vendors/nginx-1.11.5.tar.gz /usr/local/src/nginx.tar.gz
+COPY vendors/nginx-1.11.8.tar.gz /usr/local/src/nginx.tar.gz
 
 # unzip all vendor files
 RUN cd /usr/local/src \
     && unzip nginx-ct.zip \
-    && mv nginx-ct-1.3.1/ nginx-ct \
+    && mv nginx-ct-1.3.2/ nginx-ct \
     && tar zxf openssl.tar.gz \
     && mv openssl-OpenSSL_1_0_2j/ openssl \
     && tar zxf nginx.tar.gz \
-    && mv nginx-1.11.5/ nginx
+    && mv nginx-1.11.8/ nginx
 
 # compile and install 
 RUN cd /usr/local/src/nginx \
@@ -31,6 +31,7 @@ RUN cd /usr/local/src/nginx \
             --with-http_v2_module \
             --with-http_ssl_module \
             --with-http_gzip_static_module \
+            --with-http_stub_status_module \
     && make \
     && make install
     
